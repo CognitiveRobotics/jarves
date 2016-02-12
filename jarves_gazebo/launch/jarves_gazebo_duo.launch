@@ -77,7 +77,7 @@
     </include>
 
     <include file="$(find jarves)/launch/leg_detector.launch">
-      <param name="fixed_frame" value="robot_0/odom" />
+      <arg name="fixed_frame" value="robot_0/odom" />
     </include>
 
   </group>
