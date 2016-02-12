@@ -15,62 +15,22 @@
   </include>
 
   <group ns="robot_0">
-
-    <!-- kobuki.launch.xml  -->
-    <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find turtlebot_description)/robots/$(arg base)_$(arg stacks)_$(arg 3d_sensor).urdf.xacro'" />
-    <param name="robot_description" command="$(arg urdf_file)" />
-
-
-    <!-- Robot pose -->
-    <arg name="x" 	value="0"/>
-    <arg name="y"	 	value="-0.5"/>
-    <arg name="z" 	value="0"/>
-    <arg name="roll" 	value="0"/>
-    <arg name="pitch" 	value="0"/>
-    <arg name="yaw" 	value="0"/>
-
-    <!-- Gazebo model spawner -->
-    <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
-      args="-x $(arg x) -y $(arg y) -z $(arg z)
-      -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)
-      -unpause -urdf -param robot_description -model robot_0"/>
-    <!-- $(optenv ROBOT_INITIAL_POSE) -->
-
-    <!-- Velocity muxer -->
-    <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager"/>
+    <include file="$(find jarves_gazebo)/launch/includes/$(arg base).launch.xml">
+      <arg name="base" value="$(arg base)" />
+      <arg name="stacks" value="$(arg stacks)" />
+      <arg name="3d_sensor" value="$(arg 3d_sensor)" />
+      <arg name="model" value="robot_0"/>
+      <arg name="y" default="-0.5"/>
+    </include>
 
     <!-- Teleoperation of the kobuki robot using a joystick     -->
     <node pkg="turtlebot_teleop" type="turtlebot_teleop_joy" name="turtlebot_teleop_joystick">
-      <param name="scale_angular" value="1.5"/>
-      <param name="scale_linear" value="0.5"/>
       <param name="axis_deadman" value="4"/>
       <param name="axis_linear" value="1"/>
       <param name="axis_angular" value="0"/>
       <remap from="turtlebot_teleop_joystick/cmd_vel" to="mobile_base/commands/velocity"/>
     </node>
     <node pkg="joy" type="joy_node" name="joystick"/>
-
-
-    <!-- Bumper/cliff to pointcloud (not working, as it needs sensors/core messages) -->
-    <include file="$(find turtlebot_bringup)/launch/includes/kobuki/bumper2pc.launch.xml"/>
-
-    <!-- Robot state publisher to get the current data from the robot -->
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
-      <param name="publish_frequency" type="double" value="30.0" />
-      <param name="tf_prefix" type="string" value="robot_0"/>
-    </node>
-
-    <!-- We will use the kinect data to hae a fake laser -->
-    <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
-
-    <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
-      args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet laserscan_nodelet_manager">
-      <param name="scan_height" value="10"/>
-      <param name="output_frame_id" value="robot_0/camera_depth_frame"/>
-      <param name="range_min" value="0.45"/>
-      <remap from="image" to="camera/depth/image_raw"/>
-      <remap from="scan" to="scan"/>
-    </node>
 
     <include file="$(find jarves)/launch/face_detector.rgbd.launch">
       <arg name="fixed_frame" default="robot_0/camera_rgb_frame" />
@@ -79,66 +39,25 @@
     <include file="$(find jarves)/launch/leg_detector.launch">
       <arg name="fixed_frame" value="robot_0/odom" />
     </include>
-
   </group>
 
   <group ns="robot_1">
-
-    <!-- kobuki.launch.xml  -->
-    <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find turtlebot_description)/robots/$(arg base)_$(arg stacks)_$(arg 3d_sensor).urdf.xacro'" />
-    <param name="robot_description" command="$(arg urdf_file)" />
-
-
-    <!-- Robot pose -->
-    <arg name="x" 	value="0"/>
-    <arg name="y"	 	value="0.5"/>
-    <arg name="z" 	value="0"/>
-    <arg name="roll" 	value="0"/>
-    <arg name="pitch" 	value="0"/>
-    <arg name="yaw" 	value="0"/>
-
-    <!-- Gazebo model spawner -->
-    <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
-      args="-x $(arg x) -y $(arg y) -z $(arg z)
-      -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)
-      -unpause -urdf -param robot_description -model robot_1"/>
-    <!-- $(optenv ROBOT_INITIAL_POSE) -->
-
-    <!-- Velocity muxer -->
-    <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager"/>
+    <include file="$(find jarves_gazebo)/launch/includes/$(arg base).launch.xml">
+      <arg name="base" value="$(arg base)" />
+      <arg name="stacks" value="$(arg stacks)" />
+      <arg name="3d_sensor" value="$(arg 3d_sensor)" />
+      <arg name="model" value="robot_1"/>
+      <arg name="y" default="0.5"/>
+    </include>
 
     <!-- Teleoperation of the kobuki robot using a joystick     -->
     <node pkg="turtlebot_teleop" type="turtlebot_teleop_joy" name="turtlebot_teleop_joystick">
-      <param name="scale_angular" value="1.5"/>
-      <param name="scale_linear" value="0.5"/>
       <param name="axis_deadman" value="5"/>
       <param name="axis_linear" value="3"/>
       <param name="axis_angular" value="2"/>
       <remap from="turtlebot_teleop_joystick/cmd_vel" to="mobile_base/commands/velocity"/>
     </node>
     <node pkg="joy" type="joy_node" name="joystick"/>
-
-
-    <!-- Bumper/cliff to pointcloud (not working, as it needs sensors/core messages) -->
-    <include file="$(find turtlebot_bringup)/launch/includes/kobuki/bumper2pc.launch.xml"/>
-
-    <!-- Robot state publisher to get the current data from the robot -->
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
-      <param name="publish_frequency" type="double" value="30.0" />
-      <param name="tf_prefix" type="string" value="robot_1"/>
-    </node>
-
-    <!-- We will use the kinect data to hae a fake laser -->
-    <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
-
-    <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
-      args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet laserscan_nodelet_manager">
-      <param name="scan_height" value="10"/>
-      <param name="output_frame_id" value="robot_1/camera_depth_frame"/>
-      <param name="range_min" value="0.45"/>
-      <remap from="image" to="camera/depth/image_raw"/>
-      <remap from="scan" to="scan"/>
-    </node>
   </group>
 
 </launch>
