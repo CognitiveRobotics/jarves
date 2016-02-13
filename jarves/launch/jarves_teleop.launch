@@ -1,0 +1,18 @@
+<launch>
+
+  <arg name="axis_deadman" default="4" />
+  <arg name="axis_linear" default="1" />
+  <arg name="axis_angular" default="0" />
+  <arg name="dev" default="/dev/input/js0" />
+
+  <node pkg="turtlebot_teleop" type="turtlebot_teleop_joy" name="turtlebot_teleop_joystick">
+    <param name="axis_angular" value="$(arg axis_angular)"/>
+    <param name="axis_linear" value="$(arg axis_linear)"/>
+    <param name="axis_angular" value="$(arg axis_angular)"/>
+    <remap from="turtlebot_teleop_joystick/cmd_vel" to="mobile_base/commands/velocity"/>
+  </node>
+  <node pkg="joy" type="joy_node" name="joystick">
+    <param name="dev" value="$(arg dev)"/>
+  </node>
+
+</launch>

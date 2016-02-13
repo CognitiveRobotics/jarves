@@ -26,13 +26,11 @@
     </include>
 
     <!-- Teleoperation of the kobuki robot using a joystick -->
-    <node pkg="turtlebot_teleop" type="turtlebot_teleop_joy" name="turtlebot_teleop_joystick">
+    <include file="$(find jarves)/launch/jarves_teleop.launch">
       <param name="axis_deadman" value="4"/>
       <param name="axis_linear" value="1"/>
       <param name="axis_angular" value="0"/>
-      <remap from="turtlebot_teleop_joystick/cmd_vel" to="mobile_base/commands/velocity"/>
-    </node>
-    <node pkg="joy" type="joy_node" name="joystick"/>
+    </include>
 
     <include file="$(find jarves)/launch/face_detector.rgbd.launch">
       <arg name="fixed_frame" value="robot_0/odom" />
@@ -52,14 +50,12 @@
       <arg name="y" default="0.5"/>
     </include>
 
-    <!-- Teleoperation of the kobuki robot using a joystick     -->
-    <node pkg="turtlebot_teleop" type="turtlebot_teleop_joy" name="turtlebot_teleop_joystick">
+    <!-- Teleoperation of the kobuki robot using a joystick -->
+    <include file="$(find jarves)/launch/jarves_teleop.launch">
       <param name="axis_deadman" value="5"/>
       <param name="axis_linear" value="3"/>
       <param name="axis_angular" value="2"/>
-      <remap from="turtlebot_teleop_joystick/cmd_vel" to="mobile_base/commands/velocity"/>
-    </node>
-    <node pkg="joy" type="joy_node" name="joystick"/>
+    </include>
   </group>
 
 </launch>
