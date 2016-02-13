@@ -10,6 +10,8 @@
   <license>BSD</license>
 
   <url type="website">https://github.com/CognitiveRobotics/jarves</url>
+  <url type="repository">https://github.com/CognitiveRobotics/jarves</url>
+  <url type="bugtracker">https://github.com/CognitiveRobotics/jarves/issues</url>
 
   <author email="zephirefaith@zephirefaith.github">Priyam Parashar</author>
   <author email="roxfoxpox@gmail.com">Ruffin White</author>
