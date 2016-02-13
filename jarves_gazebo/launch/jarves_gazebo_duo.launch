@@ -33,7 +33,7 @@
     <node pkg="joy" type="joy_node" name="joystick"/>
 
     <include file="$(find jarves)/launch/face_detector.rgbd.launch">
-      <arg name="fixed_frame" default="camera_rgb_optical_frame" />
+      <arg name="fixed_frame" value="robot_0/odom" />
     </include>
 
     <include file="$(find jarves)/launch/leg_detector.launch">
