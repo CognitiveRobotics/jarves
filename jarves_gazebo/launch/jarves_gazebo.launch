@@ -1,12 +1,13 @@
 <launch>
   <arg name="world_file"  default="$(find jarves_gazebo)/worlds/people.world"/>
-
-  <arg name="base"      value="$(optenv TURTLEBOT_BASE kobuki)"/> <!-- create, roomba -->
-  <arg name="battery"   value="$(optenv TURTLEBOT_BATTERY /proc/acpi/battery/BAT0)"/>  <!-- /proc/acpi/battery/BAT0 -->
   <arg name="gui" default="true"/>
-  <arg name="stacks"    value="$(optenv TURTLEBOT_STACKS hexagons)"/>  <!-- circles, hexagons -->
-  <arg name="3d_sensor" value="$(optenv TURTLEBOT_3D_SENSOR asus_xtion_pro)"/>  <!-- kinect, asus_xtion_pro -->
 
+  <arg name="base"      value="$(optenv JARVES_BASE kobuki)"/> <!-- create, roomba -->
+  <arg name="battery"   value="$(optenv JARVES_BATTERY /proc/acpi/battery/BAT0)"/>  <!-- /proc/acpi/battery/BAT0 -->
+  <arg name="stacks"    value="$(optenv JARVES_STACKS hexagons)"/>  <!-- circles, hexagons -->
+  <arg name="3d_sensor" value="$(optenv JARVES_3D_SENSOR asus_xtion_pro)"/>  <!-- kinect, asus_xtion_pro -->
+
+  <!-- start world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="use_sim_time" value="true"/>
     <arg name="debug" value="false"/>
@@ -14,6 +15,7 @@
     <arg name="world_name" value="$(arg world_file)"/>
   </include>
 
+  <!-- include robots -->
   <group ns="robot_0">
     <include file="$(find jarves_gazebo)/launch/includes/$(arg base).launch.xml">
       <arg name="base" value="$(arg base)" />
@@ -23,7 +25,7 @@
       <arg name="y" default="-0.5"/>
     </include>
 
-    <!-- Teleoperation of the kobuki robot using a joystick     -->
+    <!-- Teleoperation of the kobuki robot using a joystick -->
     <node pkg="turtlebot_teleop" type="turtlebot_teleop_joy" name="turtlebot_teleop_joystick">
       <param name="axis_deadman" value="4"/>
       <param name="axis_linear" value="1"/>
