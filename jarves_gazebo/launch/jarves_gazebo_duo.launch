@@ -16,14 +16,14 @@
     <arg name="world_name" value="$(arg world_file)"/>
   </include>
 
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+    <param name="frame_id" value="/map" />
+  </node>
+
   <!-- include robots -->
   <group ns="robot_0">
     <arg name="robot" default="robot_0" />
-
-    <!-- Map server -->
-    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
-      <param name="frame_id" value="/map" />
-    </node>
 
     <include file="$(find jarves_gazebo)/launch/includes/$(arg base).launch.xml">
       <arg name="base" value="$(arg base)" />
@@ -49,6 +49,8 @@
 
     <include file="$(find jarves)/launch/amcl_demo.launch">
       <arg name="robot" value="$(arg robot)" />
+      <arg name="map_topic" value="/map" />
+      <arg name="global_frame_id" value="/map" />
     </include>
   </group>
 
