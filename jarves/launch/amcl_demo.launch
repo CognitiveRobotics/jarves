@@ -1,0 +1,25 @@
+<launch>
+  <arg name="robot" default="robot" />
+
+  <!-- Localization -->
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_a" default="0.0"/>
+
+  <include file="$(find turtlebot_navigation)/launch/includes/amcl.launch.xml">
+    <arg name="initial_pose_x"  value="$(arg initial_pose_x)"/>
+    <arg name="initial_pose_y"  value="$(arg initial_pose_y)"/>
+    <arg name="initial_pose_a"  value="$(arg initial_pose_a)"/>
+    <arg name="odom_frame_id"   value="$(arg robot)/odom"/>
+    <arg name="base_frame_id"   value="$(arg robot)/base_footprint"/>
+    <arg name="global_frame_id" value="map"/>
+  </include>
+
+  <!-- Move base -->
+  <include file="$(find jarves_navigation)/launch/includes/move_base.launch.xml">
+    <arg name="odom_frame_id"   value="$(arg robot)/odom"/>
+    <arg name="base_frame_id"   value="$(arg robot)/base_footprint"/>
+    <arg name="global_frame_id" value="map"/>
+    <arg name="cmd_vel" value="mobile_base/commands/velocity"/>
+  </include>
+</launch>
