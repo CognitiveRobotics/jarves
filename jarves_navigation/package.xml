@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+  <name>jarves_navigation</name>
+  <version>0.0.0</version>
+  <description>The jarves_navigation package</description>
+
+  <maintainer email="zephirefaith@zephirefaith.github">Priyam Parashar</maintainer>
+  <maintainer email="roxfoxpox@gmail.com">Ruffin White</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">https://github.com/CognitiveRobotics/jarves</url>
+  <url type="repository">https://github.com/CognitiveRobotics/jarves</url>
+  <url type="bugtracker">https://github.com/CognitiveRobotics/jarves/issues</url>
+
+  <author email="zephirefaith@zephirefaith.github">Priyam Parashar</author>
+  <author email="roxfoxpox@gmail.com">Ruffin White</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>tf</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+
+  <run_depend>tf</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>move_base</run_depend>
+  <run_depend>map_server</run_depend>
+  <run_depend>amcl</run_depend>
+  <run_depend>gmapping</run_depend>
+  <run_depend>turtlebot_bringup</run_depend>
+  <run_depend>dwa_local_planner</run_depend>
+
+  </package>
