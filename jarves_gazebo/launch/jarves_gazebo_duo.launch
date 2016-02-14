@@ -29,7 +29,7 @@
       <arg name="base" value="$(arg base)" />
       <arg name="stacks" value="$(arg stacks)" />
       <arg name="3d_sensor" value="$(arg 3d_sensor)" />
-      <arg name="model" value="robot_0"/>
+      <arg name="robot" value="$(arg robot)"/>
       <arg name="y" default="-0.5"/>
     </include>
 
@@ -40,33 +40,29 @@
     </include>
 
     <include file="$(find jarves)/launch/face_detector.rgbd.launch">
-      <arg name="fixed_frame" value="robot_0/odom" />
+      <arg name="fixed_frame" value="$(arg robot)/odom" />
     </include>
 
     <include file="$(find jarves)/launch/leg_detector.launch">
-      <arg name="fixed_frame" value="robot_0/odom" />
-    </include>
-
-    <include file="$(find jarves)/launch/amcl_demo.launch">
-      <arg name="robot" value="$(arg robot)" />
-      <arg name="map_topic" value="/map" />
-      <arg name="global_frame_id" value="/map" />
+      <arg name="fixed_frame" value="$(arg robot)/odom" />
     </include>
   </group>
 
   <group ns="robot_1">
+    <arg name="robot" default="robot_1" />
+
     <include file="$(find jarves_gazebo)/launch/includes/$(arg base).launch.xml">
       <arg name="base" value="$(arg base)" />
       <arg name="stacks" value="$(arg stacks)" />
       <arg name="3d_sensor" value="$(arg 3d_sensor)" />
-      <arg name="model" value="robot_1"/>
+      <arg name="robot" value="$(arg robot)"/>
       <arg name="y" default="0.5"/>
     </include>
 
     <include file="$(find jarves)/launch/jarves_teleop.launch">
-      <param name="axis_deadman" value="5"/>
-      <param name="axis_linear" value="3"/>
-      <param name="axis_angular" value="2"/>
+      <arg name="axis_deadman" value="5"/>
+      <arg name="axis_linear" value="3"/>
+      <arg name="axis_angular" value="2"/>
     </include>
   </group>
 
