@@ -50,7 +50,7 @@
     <remap from="scan" to="scan"/>
   </node>
 
-  <include file="$(find jarves)/launch/amcl_demo.launch">
+  <include file="$(find jarves_navigation)/launch/amcl_demo.launch">
     <arg name="robot" value="$(arg robot)" />
     <arg name="map_topic" value="/map" />
     <arg name="global_frame_id" value="/map" />
