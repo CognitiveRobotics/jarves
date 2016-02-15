@@ -3,6 +3,9 @@
   <arg name="axis_deadman" default="4" />
   <arg name="axis_linear" default="1" />
   <arg name="axis_angular" default="0" />
+  <arg name="scale_angular" value="1.5"/>
+  <arg name="scale_linear" value="0.5"/>
+
   <arg name="dev" default="/dev/input/js0" />
 
   <!--  smooths inputs from cmd_vel_mux/input/teleop_raw to cmd_vel_mux/input/teleop -->
@@ -12,6 +15,8 @@
     <param name="axis_deadman" value="$(arg axis_deadman)"/>
     <param name="axis_linear" value="$(arg axis_linear)"/>
     <param name="axis_angular" value="$(arg axis_angular)"/>
+    <param name="scale_angular" value="$(arg scale_angular)"/>
+    <param name="scale_linear" value="$(arg scale_linear)"/>
     <remap from="turtlebot_teleop_joystick/cmd_vel" to="teleop_velocity_smoother/raw_cmd_vel"/>
   </node>
   <node pkg="joy" type="joy_node" name="joystick">
