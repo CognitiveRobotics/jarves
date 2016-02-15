@@ -5,11 +5,14 @@
   <arg name="axis_angular" default="0" />
   <arg name="dev" default="/dev/input/js0" />
 
+  <!--  smooths inputs from cmd_vel_mux/input/teleop_raw to cmd_vel_mux/input/teleop -->
+  <include file="$(find jarves_teleop)/launch/includes/velocity_smoother.launch.xml"/>
+
   <node pkg="turtlebot_teleop" type="turtlebot_teleop_joy" name="turtlebot_teleop_joystick">
     <param name="axis_deadman" value="$(arg axis_deadman)"/>
     <param name="axis_linear" value="$(arg axis_linear)"/>
     <param name="axis_angular" value="$(arg axis_angular)"/>
-    <remap from="turtlebot_teleop_joystick/cmd_vel" to="mobile_base/commands/velocity"/>
+    <remap from="turtlebot_teleop_joystick/cmd_vel" to="teleop_velocity_smoother/raw_cmd_vel"/>
   </node>
   <node pkg="joy" type="joy_node" name="joystick">
     <param name="dev" value="$(arg dev)"/>

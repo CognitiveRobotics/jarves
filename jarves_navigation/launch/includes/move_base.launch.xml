@@ -2,17 +2,19 @@
     ROS navigation stack with velocity smoother and safety (reactive) controller
 -->
 <launch>
-  <include file="$(find turtlebot_navigation)/launch/includes/velocity_smoother.launch.xml"/>
-  <include file="$(find turtlebot_navigation)/launch/includes/safety_controller.launch.xml"/>
-
   <arg name="map_topic" default="map"/>
   <arg name="odom_frame_id"   default="odom"/>
   <arg name="base_frame_id"   default="base_footprint"/>
   <arg name="global_frame_id" default="map"/>
   <arg name="odom_topic" default="odom" />
-  <arg name="cmd_vel" default="navigation_velocity_smoother/raw_cmd_vel" />
+  <arg name="cmd_vel" default="mobile_base/commands/velocity" />
   <arg name="laser_topic" default="scan" />
   <arg name="custom_param_file" default="$(find turtlebot_navigation)/param/dummy.yaml"/>
+
+  <include file="$(find jarves_navigation)/launch/includes/velocity_smoother.launch.xml">
+    <arg name="cmd_vel" value="$(arg cmd_vel)" />
+  </include>
+  <include file="$(find jarves_navigation)/launch/includes/safety_controller.launch.xml"/>
 
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find turtlebot_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
@@ -33,7 +35,7 @@
     <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
     <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
 
-    <remap from="cmd_vel" to="$(arg cmd_vel)"/>
+    <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
     <remap from="odom" to="$(arg odom_topic)"/>
     <remap from="scan" to="$(arg laser_topic)"/>
     <remap from="map" to="$(arg map_topic)"/>

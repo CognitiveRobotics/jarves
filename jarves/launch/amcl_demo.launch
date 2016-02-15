@@ -2,7 +2,7 @@
   <arg name="robot" default="robot" />
   <arg name="map_topic" default="map"/>
   <arg name="global_frame_id" default="map"/>
-  <arg name="cmd_vel" default="mobile_base/commands/velocity"/>
+  <arg name="cmd_vel" default="cmd_vel_mux/input/navi"/>
 
   <!-- Localization -->
   <arg name="initial_pose_x" default="0.0"/>
