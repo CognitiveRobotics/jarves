@@ -19,7 +19,7 @@
   <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
     args="-x $(arg x) -y $(arg y) -z $(arg z)
     -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)
-    -unpause -urdf -param robot_description -model $(arg robot)"/>
+    -urdf -param robot_description -model $(arg robot)"/>
 
   <!-- Velocity muxer -->
   <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager"/>
