@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package>
+  <name>jarves_teleop</name>
+  <version>0.0.0</version>
+  <description>The jarves_teleop package</description>
+
+  <maintainer email="zephirefaith@zephirefaith.github">Priyam Parashar</maintainer>
+  <maintainer email="roxfoxpox@gmail.com">Ruffin White</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">https://github.com/CognitiveRobotics/jarves</url>
+  <url type="repository">https://github.com/CognitiveRobotics/jarves</url>
+  <url type="bugtracker">https://github.com/CognitiveRobotics/jarves/issues</url>
+
+  <author email="zephirefaith@zephirefaith.github">Priyam Parashar</author>
+  <author email="roxfoxpox@gmail.com">Ruffin White</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>joy</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>joy</run_depend>
+  <run_depend>kobuki_safety_controller</run_depend>
+  <run_depend>yocs_velocity_smoother</run_depend>
+  <run_depend>turtlebot_bringup</run_depend>
+</package>

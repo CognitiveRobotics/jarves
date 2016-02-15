@@ -33,7 +33,7 @@
       <arg name="y" default="-0.5"/>
     </include>
 
-    <include file="$(find jarves)/launch/jarves_teleop.launch">
+    <include file="$(find jarves_teleop)/launch/jarves_teleop.launch">
       <arg name="axis_deadman" value="4"/>
       <arg name="axis_linear" value="1"/>
       <arg name="axis_angular" value="0"/>
@@ -59,7 +59,7 @@
       <arg name="y" default="0.5"/>
     </include>
 
-    <include file="$(find jarves)/launch/jarves_teleop.launch">
+    <include file="$(find jarves_teleop)/launch/jarves_teleop.launch">
       <arg name="axis_deadman" value="5"/>
       <arg name="axis_linear" value="3"/>
       <arg name="axis_angular" value="2"/>
