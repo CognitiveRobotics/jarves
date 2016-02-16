@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="person_standing.xacro" xmlns:xacro="http://ros.org/wiki/xacro">
+<!-- <xacro:include filename="$(find jarves_description)/robots/includes/person_standing.sdf" /> -->
+
+  <!-- Xacro properties -->
+  <xacro:macro name="person_standing" params="parent">
+    <joint name="person_standing_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 ${M_PI/2}"/>
+      <parent link="${parent}"/>
+      <child link="person_standing_link"/>
+    </joint>
+    <link name="person_standing_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="model://person_standing/meshes/standing.dae"/>
+        </geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+</robot>
