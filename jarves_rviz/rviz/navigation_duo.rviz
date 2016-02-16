@@ -6,7 +6,8 @@ Panels:
       Expanded:
         - /TF1/Frames1
         - /TF1/Tree1
-        - /robot_01
+        - /robot_01/RobotModel1
+        - /robot_11/RobotModel1
       Splitter Ratio: 0.5
     Tree Height: 661
   - Class: rviz/Selection
@@ -251,7 +252,7 @@ Visualization Manager:
               Show Trail: false
               Value: true
           Name: RobotModel
-          Robot Description: robot_description
+          Robot Description: robot_0/robot_description
           TF Prefix: robot_0
           Update Interval: 0
           Value: true
@@ -626,7 +627,7 @@ Visualization Manager:
               Show Trail: false
               Value: true
           Name: RobotModel
-          Robot Description: robot_description
+          Robot Description: robot_1/robot_description
           TF Prefix: robot_1
           Update Interval: 0
           Value: true

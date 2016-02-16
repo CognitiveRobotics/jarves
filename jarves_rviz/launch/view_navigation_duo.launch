@@ -1,0 +1,6 @@
+<!--
+  Used for visualising jarves while building a map or navigating with the ros navistack.
+ -->
+<launch>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find jarves_rviz)/rviz/navigation_duo.rviz"/>
+</launch>
