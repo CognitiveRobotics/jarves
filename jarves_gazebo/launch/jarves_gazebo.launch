@@ -6,7 +6,7 @@
 
   <arg name="base"      value="$(optenv JARVES_BASE kobuki)"/> <!-- create, roomba -->
   <arg name="battery"   value="$(optenv JARVES_BATTERY /proc/acpi/battery/BAT0)"/>  <!-- /proc/acpi/battery/BAT0 -->
-  <arg name="stacks"    value="$(optenv JARVES_STACKS hexagons)"/>  <!-- circles, hexagons -->
+  <arg name="stacks"    value="$(optenv JARVES_STACKS human)"/>  <!-- circles, hexagons -->
   <arg name="3d_sensor" value="$(optenv JARVES_3D_SENSOR asus_xtion_pro)"/>  <!-- kinect, asus_xtion_pro -->
 
   <!-- start world -->
