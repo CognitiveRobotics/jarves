@@ -1,15 +1,16 @@
 <?xml version="1.0"?>
 <!--
     - Base      : kobuki
-    - Stacks    : hexagons
-    - 3d Sensor : kinect
+    - Stacks    : human
+    - 3d Sensor : asus_xtion_pro_invisible
 -->
 <robot name="humanbot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_library.urdf.xacro" />
-  <xacro:include filename="$(find jarves_description)/robots/includes/person_standing.xacro" />
+  <xacro:include filename="$(find jarves_description)/urdf/sensors/asus_xtion_pro_invisible.urdf.xacro" />
+  <xacro:include filename="$(find jarves_description)/urdf/humans/person_standing.xacro" />
 
   <kobuki/>
-  <sensor_asus_xtion_pro          parent="base_link"/>
-  <person_standing                parent="base_link"/>
+  <sensor_asus_xtion_pro_invisible  parent="base_link"/>
+  <person_standing                  parent="base_link"/>
 </robot>
