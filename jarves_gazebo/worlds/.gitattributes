@@ -1,2 +1,0 @@
-maps/*.pgm filter=lfs diff=lfs merge=lfs -text
-maps/*.png filter=lfs diff=lfs merge=lfs -text
