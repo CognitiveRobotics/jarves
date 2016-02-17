@@ -13,7 +13,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="model://person_standing/meshes/standing.dae"/>
+          <mesh filename="package://jarves_description/meshes/humans/person_standing/meshes/standing.dae"/>
         </geometry>
       </visual>
     </link>
