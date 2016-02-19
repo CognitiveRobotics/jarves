@@ -47,7 +47,16 @@
     <param name="output_frame_id" value="$(arg robot)/camera_depth_frame"/>
     <param name="range_min" value="0.45"/>
     <remap from="image" to="camera/depth/image_raw"/>
-    <remap from="scan" to="scan"/>
+    <remap from="scan" to="depth_scan"/>
+  </node>
+
+  <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+    <param name="destination_frame" value="$(arg robot)/camera_depth_frame"/>
+    <param name="cloud_destination_topic" value="merged_cloud"/>
+    <param name="scan_destination_topic" value="scan"/>
+    <!-- <remap from="$(arg robot)/depth_scan" to="depth_scan"/>
+    <remap from="$(arg robot)/hokuyo_scan" to="hokuyo_scan"/> -->
+    <param name="laserscan_topics" value="hokuyo_scan depth_scan" />
   </node>
 
   <include file="$(find jarves_navigation)/launch/amcl_demo.launch">
