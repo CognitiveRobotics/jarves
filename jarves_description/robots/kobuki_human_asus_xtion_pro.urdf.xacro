@@ -8,9 +8,11 @@
 
   <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_library.urdf.xacro" />
   <xacro:include filename="$(find jarves_description)/urdf/sensors/asus_xtion_pro_invisible.urdf.xacro" />
+  <xacro:include filename="$(find jarves_description)/urdf/sensors/hokuyo.urdf.xacro" />
   <xacro:include filename="$(find jarves_description)/urdf/humans/person_standing.xacro" />
 
   <kobuki/>
   <sensor_asus_xtion_pro_invisible  parent="base_link"/>
+  <hokuyo_laser                     xyz="0 0 ${cam_pz}" rpy="0 0 ${-M_PI}" parent="base_link"/>
   <person_standing                  parent="base_link"/>
 </robot>
