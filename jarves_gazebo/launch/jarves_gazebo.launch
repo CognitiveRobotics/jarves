@@ -1,4 +1,7 @@
 <launch>
+  <env name="ROSCONSOLE_CONFIG_FILE"
+     value="$(find jarves_gazebo)/cfg/custom_rosconsole.conf"/>
+
   <arg name="world_file"  default="$(find turtlebot_gazebo)/worlds/playground.world"/>
   <arg name="gui" default="true"/>
   <arg name="paused" default="true"/>
