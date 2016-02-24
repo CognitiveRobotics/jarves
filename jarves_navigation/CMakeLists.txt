@@ -5,9 +5,12 @@ project(jarves_navigation)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  actionlib
+  geometry_msgs
+  move_base_msgs
   roscpp
   rospy
-  std_msgs
+  roscpp_serialization
 )
 
 ## System dependencies are found with CMake's conventions
@@ -102,8 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES jarves_navigation
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
+  CATKIN_DEPENDS roscpp actionlib geometry_msgs move_base_msgs roscpp_serialization
 )
 
 ###########
@@ -128,16 +130,16 @@ include_directories(
 # add_dependencies(jarves_navigation ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(jarves_navigation_node src/jarves_navigation_node.cpp)
+ add_executable(jarves_guide_follower src/guide_follower.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(jarves_navigation_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(jarves_navigation_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(jarves_guide_follower
+   ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
