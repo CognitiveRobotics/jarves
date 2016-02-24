@@ -30,7 +30,7 @@
   </node>
 
   <!-- Bumper/cliff to pointcloud (not working, as it needs sensors/core messages) -->
-  <include file="$(find turtlebot_bringup)/launch/includes/kobuki/bumper2pc.launch.xml"/>
+  <!--<include file="$(find turtlebot_bringup)/launch/includes/kobuki/bumper2pc.launch.xml"/>-->
 
   <!-- Robot state publisher to get the current data from the robot -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
