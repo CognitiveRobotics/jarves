@@ -54,8 +54,6 @@
     <param name="destination_frame" value="$(arg robot)/camera_depth_frame"/>
     <param name="cloud_destination_topic" value="merged_cloud"/>
     <param name="scan_destination_topic" value="scan"/>
-    <!-- <remap from="$(arg robot)/depth_scan" to="depth_scan"/>
-    <remap from="$(arg robot)/hokuyo_scan" to="hokuyo_scan"/> -->
     <param name="laserscan_topics" value="hokuyo_scan depth_scan" />
   </node>
 
