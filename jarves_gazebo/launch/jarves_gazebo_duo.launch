@@ -5,7 +5,7 @@
   <arg name="world_file"  default="worlds/willowgarage.world"/>
   <arg name="gui" default="true"/>
   <arg name="paused" default="true"/>
-  <arg name="map_file" default="$(find jarves_gazebo)/worlds/maps/gazebo-willowgarage.yaml"/> <!-- create, roomba -->
+  <arg name="map_file" default="$(find jarves_gazebo)/maps/gazebo-willowgarage.yaml"/> <!-- create, roomba -->
 
   <arg name="base"      value="$(optenv JARVES_BASE kobuki)"/> <!-- create, roomba -->
   <arg name="battery"   value="$(optenv JARVES_BATTERY /proc/acpi/battery/BAT0)"/>  <!-- /proc/acpi/battery/BAT0 -->
