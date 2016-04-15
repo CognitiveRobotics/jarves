@@ -25,25 +25,31 @@
 
 <section class="wrapper style4 container">
         <div class="content center">
-                <button id="send" class="button">Dr H Christensen</button>
+                <button id="send1" class="button">Dr H Christensen</button>
                 <script>
-                        $('#send').click(function() {
-                                var msg = new ROSLIB.Message({
-                                        data : $('#message').val()
-                                });
-                                topic.publish(msg);
+                        $('#send1').click(function() {
+                                var request = new ROSLIB.ServiceRequest({
+                                        destination : 'henrik'
+                                        });
+                                
+                                send_location.callService(request, function(result) {
+                                        console.log('Result :' + result.success);
+                                        });
                         });
                 </script>
                 
                 <br />
                 <br />
-                <button id="send" class="button">Dr S Chernova</button>
+                <button id="send2" class="button">Dr S Chernova</button>
                 <script>
-                        $('#send').click(function() {
-                                var msg = new ROSLIB.Message({
-                                        data : $('#message').val()
-                                });
-                                topic.publish(msg);
+                        $('#send2').click(function() {
+                                var request = new ROSLIB.ServiceRequest({
+                                        destination : 'sonia'
+                                        });
+                                
+                                send_location.callService(request, function(result) {
+                                        console.log('Result :' + result.success);
+                                        });
                         });
                 </script>
         </div>
