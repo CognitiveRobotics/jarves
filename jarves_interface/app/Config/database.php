@@ -7,7 +7,7 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'rms',
-		'password' => 'OGJmNjNiODMxODM2',
+		'password' => 'YmJhNGE0YTFiMzI4',
 		'database' => 'rms',
 		'encoding' => 'utf8'
 	);
