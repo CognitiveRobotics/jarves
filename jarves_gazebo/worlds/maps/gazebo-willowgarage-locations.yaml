@@ -1,0 +1,75 @@
+# Locations
+map: gazebo-willowgarage.yaml
+locations:
+  door1:
+    description: "Door 1"
+    pose:
+      orientation:
+        w: 0.6671679860496866
+        x: 0.0
+        y: 0.0
+        z: 0.7449072951652476
+      position:
+        x: -10.008660316467285
+        y: 0.5051975250244141
+        z: 0.0
+  door2:
+    description: "Door 2"
+    pose:
+      orientation:
+        w: 0.9160866851272069
+        x: 0.0
+        y: 0.0
+        z: -0.40098028047853634
+      position:
+        x: -7.747527122497559
+        y: -4.512989044189453
+        z: 0.0
+  door3:
+    description: "Door 3"
+    pose:
+      orientation:
+        w: 0.9998415574539538
+        x: 0.0
+        y: 0.0
+        z: -0.01780056145328421
+      position:
+        x: 1.0240954160690308
+        y: -5.391801834106445
+        z: 0.0
+  exit1:
+    description: "Exit 1"
+    pose:
+      orientation:
+        w: 0.9049044895179887
+        x: 0.0
+        y: 0.0
+        z: 0.42561469059489493
+      position:
+        x: 11.221573829650879
+        y: -11.53195571899414
+        z: 0.0
+  exit2:
+    description: "Exit 2"
+    pose:
+      orientation:
+        w: 0.7223384552496261
+        x: 0.0
+        y: 0.0
+        z: 0.6915396995600352
+      position:
+        x: 11.316637992858887
+        y: -4.851247787475586
+        z: 0.0
+  exit3:
+    description: "Exit 3"
+    pose:
+      orientation:
+        w: 0.7114403566213015
+        x: 0.0
+        y: 0.0
+        z: -0.702746482716602
+      position:
+        x: -10.036348342895508
+        y: -8.22224235534668
+        z: 0.0
