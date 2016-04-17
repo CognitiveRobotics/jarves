@@ -5,11 +5,11 @@
   <arg name="world_file"  default="$(find turtlebot_gazebo)/worlds/playground.world"/>
   <arg name="gui" default="true"/>
   <arg name="paused" default="true"/>
-  <arg name="map_file" default="$(find turtlebot_gazebo)/maps/playground.yaml"/> <!-- create, roomba -->
+  <arg name="map_file" default="$(find turtlebot_gazebo)/maps/playground.yaml"/>
 
   <arg name="base"      value="$(optenv JARVES_BASE kobuki)"/> <!-- create, roomba -->
   <arg name="battery"   value="$(optenv JARVES_BATTERY /proc/acpi/battery/BAT0)"/>  <!-- /proc/acpi/battery/BAT0 -->
-  <arg name="stacks"    value="$(optenv JARVES_STACKS human)"/>  <!-- circles, hexagons -->
+  <arg name="stacks"    value="$(optenv JARVES_STACKS stackless)"/>  <!-- stackless, human -->
   <arg name="3d_sensor" value="$(optenv JARVES_3D_SENSOR asus_xtion_pro)"/>  <!-- kinect, asus_xtion_pro -->
 
   <!-- start world -->
