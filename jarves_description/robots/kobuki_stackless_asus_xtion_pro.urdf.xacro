@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+    - Base      : kobuki
+    - Stacks    : base
+    - 3d Sensor : asus_xtion_pro_invisible
+-->
+<robot name="kobuki" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_library.urdf.xacro" />
+  <xacro:include filename="$(find jarves_description)/urdf/sensors/asus_xtion_pro_invisible.urdf.xacro" />
+  <xacro:include filename="$(find jarves_description)/urdf/sensors/hokuyo.urdf.xacro" />
+
+  <kobuki/>
+  <sensor_asus_xtion_pro_invisible  parent="base_link"/>
+  <hokuyo_laser                     xyz="0 0 ${cam_pz}" rpy="0 0 ${-M_PI}" parent="base_link"/>
+</robot>
