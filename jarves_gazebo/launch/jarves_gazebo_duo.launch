@@ -68,6 +68,12 @@
       <arg name="axis_linear" value="3"/>
       <arg name="axis_angular" value="2"/>
     </include>
+
+    <node pkg="jarves_gazebo" type="simple_follow.py" name="simple_follow" output="screen">
+      <param name="leader_topic" type="string" value="/robot_0/amcl_pose" />
+      <param name="movebase_ns" type="string" value="move_base" />
+    </node>
+
   </group>
 
 </launch>
