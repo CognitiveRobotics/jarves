@@ -1,6 +1,7 @@
 <launch>
   <arg name="robot" default="robot" />
   <arg name="map_topic" default="map"/>
+  <arg name="scan_topic"      default="scan"/>
   <arg name="global_frame_id" default="map"/>
   <arg name="cmd_vel" default="cmd_vel_mux/input/navi"/>
 
@@ -17,6 +18,7 @@
     <arg name="base_frame_id"   value="$(arg robot)/base_footprint"/>
     <arg name="global_frame_id" value="$(arg global_frame_id)"/>
     <arg name="map_topic"       value="$(arg map_topic)"/>
+    <arg name="scan_topic"      value="$(arg scan_topic)"/>
   </include>
 
   <!-- Move base -->

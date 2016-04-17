@@ -39,7 +39,7 @@
   </node>
 
   <!-- We will use the kinect data to hae a fake laser -->
-  <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
+  <!-- <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
 
   <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
     args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet laserscan_nodelet_manager">
@@ -55,12 +55,13 @@
     <param name="cloud_destination_topic" value="merged_cloud"/>
     <param name="scan_destination_topic" value="scan"/>
     <param name="laserscan_topics" value="hokuyo_scan depth_scan" />
-  </node>
+  </node> -->
 
   <include file="$(find jarves_navigation)/launch/amcl_demo.launch">
     <arg name="robot" value="$(arg robot)" />
     <arg name="map_topic" value="/map" />
-    <arg name="global_frame_id" value="/map" />
+    <arg name="scan_topic" value="hokuyo_scan" />
+    <arg name="global_frame_id" value="map" />
     <arg name="initial_pose_x" value="$(arg x)"/>
     <arg name="initial_pose_y" value="$(arg y)"/>
     <arg name="initial_pose_a" value="$(arg yaw)"/>
