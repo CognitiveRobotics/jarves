@@ -38,14 +38,14 @@
         <sensor type="gpu_ray" name="head_hokuyo_sensor">
             <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
-            <update_rate>40</update_rate>
+            <update_rate>80</update_rate>
             <ray>
                 <scan>
                     <horizontal>
                         <samples>1080</samples>
                         <resolution>1</resolution>
-                        <min_angle>${-M_PI/1.5}</min_angle>
-                        <max_angle>${+M_PI/1.5}</max_angle>
+                        <min_angle>${-M_PI}</min_angle>
+                        <max_angle>${+M_PI}</max_angle>
                     </horizontal>
                 </scan>
                 <range>
