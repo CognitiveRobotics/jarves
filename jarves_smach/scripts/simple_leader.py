@@ -6,20 +6,15 @@ roslib.load_manifest('jarves')
 roslib.load_manifest('uashh_smach')
 
 import rospy
-import tf
-
 import numpy
-
 import smach
 import smach_ros
 from smach import State, Sequence
 from smach_ros import SimpleActionState, ServiceState
 
 from move_base_msgs.msg import MoveBaseGoal, MoveBaseAction
-from geometry_msgs.msg import Pose, PoseStamped, PoseWithCovarianceStamped, Point, Quaternion
-from nav_msgs.srv import GetPlan, GetPlanRequest
+from geometry_msgs.msg import Pose, PoseStamped, PoseWithCovarianceStamped
 
-import uashh_smach.util as util
 from uashh_smach.util import WaitForMsgState
 
 def poseDistance(pose1, pose2):
@@ -35,7 +30,7 @@ def poseDistance(pose1, pose2):
 class WaitForGoalMsgState(WaitForMsgState):
     """Waits for goal message to save to userdata"""
     def __init__(self, goal_topic='move_base_simple/goal'):
-        WaitForMsgState.__init__(self, goal_topic, PoseStamped, self._msg_cb, output_keys=['goal'])#, latch=True)
+        WaitForMsgState.__init__(self, goal_topic, PoseStamped, self._msg_cb, output_keys=['goal'])#, latch=True, timeout=5)
 
     def _msg_cb(self, msg, ud):
         goal = MoveBaseGoal()
@@ -104,20 +99,20 @@ def simple_leader():
     # rospy.loginfo(rospy.get_caller_id() + " movebase_ns:" + movebase_ns)
 
     # Create the top level SMACH state machine
-    sm_top = smach.StateMachine(outcomes=['woot'])
-    sm_top.userdata.goal = None
-    sm_top.userdata.leader = None
-    sm_top.userdata.follower = None
-    sm_top.userdata.upper_follower_threshold = 3
-    sm_top.userdata.lower_follower_threshold = 2
-    sm_top.userdata.lower_goal_threshold = 1
+    sm = smach.StateMachine(outcomes=['woot'])
+    sm.userdata.goal = None
+    sm.userdata.leader = None
+    sm.userdata.follower = None
+    sm.userdata.upper_follower_threshold = 3
+    sm.userdata.lower_follower_threshold = 2
+    sm.userdata.lower_goal_threshold = 1
 
     # Open the container
-    with sm_top:
+    with sm:
         smach.StateMachine.add('INIT_GOAL', WaitForGoalMsgState(goal_topic),
                                 transitions={'succeeded':'CON',
-                                             'preempted':'woot',
-                                             'aborted':'woot'})
+                                             'preempted':'CON',
+                                             'aborted':'CON'})
 
         # Create the sub SMACH state machine
         sm_con = smach.Concurrence(outcomes=['succeeded'],
@@ -151,11 +146,11 @@ def simple_leader():
                                              'goal':'SEEK_GOAL',
                                              'done':'woot'})
     # Create and start the introspection server
-    sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
+    sis = smach_ros.IntrospectionServer('simple_lead_sis', sm, '/')
     sis.start()
 
     # Execute SMACH plan
-    outcome = sm_top.execute()
+    outcome = sm.execute()
     rospy.spin()
     sis.stop()
 
