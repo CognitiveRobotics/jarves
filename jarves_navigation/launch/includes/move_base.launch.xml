@@ -16,7 +16,7 @@
   </include>
   <include file="$(find jarves_navigation)/launch/includes/safety_controller.launch.xml"/>
 
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base">
     <rosparam file="$(find jarves_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find jarves_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find jarves_navigation)/param/local_costmap_params.yaml" command="load" />
