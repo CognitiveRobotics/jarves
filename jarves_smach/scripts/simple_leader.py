@@ -61,34 +61,36 @@ class WaitForPoseMsgState(WaitForMsgState):
 
 class MoveBaseToGoalState(smach.State):
     """Calls a move_base action server using goal from userdata"""
-    def __init__(self):
+    def __init__(self, movebase_ns):
         smach.State.__init__(self,
-            input_keys=['sac','goal'],
-            output_keys=['sac'],
+            input_keys=['goal'],
             outcomes=['succeeded'])
+        self.movebase_ns = movebase_ns
 
     def execute(self, userdata):
         goal = MoveBaseGoal()
         goal.target_pose.pose = userdata.goal.pose
         goal.target_pose.header.frame_id = userdata.goal.header.frame_id
         goal.target_pose.header.stamp = userdata.goal.header.stamp
-        userdata.sac.send_goal(goal)
+        sac = SimpleActionClient(self.movebase_ns, MoveBaseAction)
+        sac.send_goal(goal)
         return 'succeeded'
 
 class MoveBaseToFollowerState(SimpleActionState):
     """Calls a move_base action server using follower pose from userdata"""
-    def __init__(self):
+    def __init__(self, movebase_ns):
         smach.State.__init__(self,
-            input_keys=['sac','follower'],
-            output_keys=['sac'],
+            input_keys=['follower'],
             outcomes=['succeeded'])
+        self.movebase_ns = movebase_ns
 
     def execute(self, userdata):
         goal = MoveBaseGoal()
         goal.target_pose.pose = userdata.follower.pose.pose
         goal.target_pose.header.frame_id = userdata.follower.header.frame_id
         goal.target_pose.header.stamp = userdata.follower.header.stamp
-        userdata.sac.send_goal(goal)
+        sac = SimpleActionClient(self.movebase_ns, MoveBaseAction)
+        sac.send_goal(goal)
         return 'succeeded'
 
 class ChooseFocusState(smach.State):
@@ -110,6 +112,7 @@ class ChooseFocusState(smach.State):
             return 'goal'
         elif(goal_distance < ud.thresholds['lower_goal_threshold']):
             return 'done'
+        rospy.loginfo(rospy.get_caller_id() + " goal_distance: " + str(goal_distance))
         return 'wait'
 
 # main
@@ -132,7 +135,6 @@ def simple_leader():
     sm.userdata.thresholds = {'upper_follower_threshold': 4,
                               'lower_follower_threshold': 2,
                               'lower_goal_threshold': 4}
-    sm.userdata.sac = SimpleActionClient(movebase_ns, MoveBaseAction)
 
     # Open the container
     with sm:
@@ -165,23 +167,23 @@ def simple_leader():
                                remapping={'leader_con_out':'leader',
                                           'follower_con_out':'follower'})
 
-        smach.StateMachine.add('SEEK_FOLLOWER', MoveBaseToFollowerState(),
+        smach.StateMachine.add('SEEK_FOLLOWER', MoveBaseToFollowerState(movebase_ns),
                                 transitions={'succeeded':'CON'})
-        smach.StateMachine.add('SEEK_GOAL', MoveBaseToGoalState(),
+        smach.StateMachine.add('SEEK_GOAL', MoveBaseToGoalState(movebase_ns),
                                 transitions={'succeeded':'CON'})
         smach.StateMachine.add('CHECK_FOCUS', ChooseFocusState(),
                                 transitions={'wait':'CON',
                                              'follower':'SEEK_FOLLOWER',
                                              'goal':'SEEK_GOAL',
-                                             'done':'woot'})
+                                             'done':'INIT_GOAL'})
     # Create and start the introspection server
-#     sis = smach_ros.IntrospectionServer('simple_lead_sis', sm, '/')
-#     sis.start()
+    sis = smach_ros.IntrospectionServer('simple_lead_sis', sm, '/')
+    sis.start()
 
     # Execute SMACH plan
     outcome = sm.execute()
     rospy.spin()
-#     sis.stop()
+    sis.stop()
 
 if __name__ == '__main__':
     simple_leader()
