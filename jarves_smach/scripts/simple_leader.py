@@ -115,10 +115,10 @@ class ChooseFocusState(smach.State):
 # main
 def simple_leader():
     rospy.init_node('simple_lead')
-    goal_topic = rospy.get_param('~goal_topic', 'move_base_simple/goal')
-    leader_topic = rospy.get_param('~leader_topic', 'pose')
-    follower_topic = rospy.get_param('~follower_topic', 'pose')
-    movebase_ns = rospy.get_param('~movebase_ns', 'move_base')
+    goal_topic = rospy.get_param('~goal_topic', '/robot_0/move_base_simple/goal')
+    leader_topic = rospy.get_param('~leader_topic', '/robot_0/amcl_pose')
+    follower_topic = rospy.get_param('~follower_topic', '/robot_1/amcl_pose')
+    movebase_ns = rospy.get_param('~movebase_ns', '/robot_0/move_base')
 
     # rospy.loginfo(rospy.get_caller_id() + " goal_topic:" + goal_topic)
     # rospy.loginfo(rospy.get_caller_id() + " follower_topic:" + follower_topic)
@@ -129,9 +129,9 @@ def simple_leader():
     sm.userdata.goal = None
     sm.userdata.leader = None
     sm.userdata.follower = None
-    sm.userdata.thresholds = {'upper_follower_threshold': 3,
+    sm.userdata.thresholds = {'upper_follower_threshold': 4,
                               'lower_follower_threshold': 2,
-                              'lower_goal_threshold': 1}
+                              'lower_goal_threshold': 4}
     sm.userdata.sac = SimpleActionClient(movebase_ns, MoveBaseAction)
 
     # Open the container
