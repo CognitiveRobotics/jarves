@@ -7,3 +7,4 @@ Personal robotics
     * [Turtlebot (for description)] (https://github.com/turtlebot/turtlebot.git)
 * Use with [ROS-people](https://github.com/ruffsl/people.git)
 * This [fork](https://github.com/ruffsl/ira_laser_tools/tree/patch.git) of ira_laser_tools
+* [GIT LFS] (https://git-lfs.github.com)
