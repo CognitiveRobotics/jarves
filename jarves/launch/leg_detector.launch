@@ -3,8 +3,9 @@
   <arg name="scan" default="scan" />
   <arg name="fixed_frame" default="odom" />
 
-  <node pkg="leg_detector" type="leg_detector" name="leg_detector" args="scan:=hokuyo_scan $(find leg_detector)/config/trained_leg_detector.yaml" launch-prefix="xterm -e gdb --args" output="screen">
-    <param name="fixed_frame" type="string" value="$(arg fixed_frame)" />
+  <node pkg="leg_detector" type="leg_detector" name="leg_detector" args="$(find leg_detector)/config/trained_leg_detector.yaml" launch-prefix="xterm -e gdb --args" output="screen">
+      <remap from="scan" to="hokuyo_scan" />
+      <param name="fixed_frame" type="string" value="$(arg fixed_frame)" />
   </node>
 
 </launch>
