@@ -48,7 +48,8 @@
     </include>
 
     <include file="$(find jarves)/launch/leg_detector.launch">
-      <arg name="fixed_frame" value="$(arg robot)/odom" />
+        <arg name="fixed_frame" value="$(arg robot)/odom" />
+        <arg name="scan" value="$(arg robot)/hokuyo_scan" />
     </include>
 
     <node pkg="jarves_smach" type="simple_leader.py" name="simple_leader" output="screen">
@@ -80,6 +81,7 @@
     <node pkg="jarves_gazebo" type="simple_follow.py" name="simple_follow" output="screen">
       <param name="leader_topic" type="string" value="/robot_0/amcl_pose" />
       <param name="movebase_ns" type="string" value="move_base" />
+      <param name="follower_topic" type="string" value="/robot_1/amcl_pose" />
     </node>
 
   </group>
