@@ -11,4 +11,6 @@ local_costmap:
    transform_tolerance: 0.5
    plugins:
     - {name: obstacle_layer,      type: "costmap_2d::VoxelLayer"}
+    - {name: social_layer_proxemic,        type: "social_navigation_layers::ProxemicLayer"}
+    - {name: social_layer_passing,            type: "social_navigation_layers::PassingLayer"}
     - {name: inflation_layer,     type: "costmap_2d::InflationLayer"}
