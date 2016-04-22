@@ -4,7 +4,7 @@
   <version>0.0.0</version>
   <description>The jarves package</description>
 
-  <maintainer email="zephirefaith@zephirefaith.github">Priyam Parashar</maintainer>
+  <maintainer email="priyam8parashar@gmail.com">Priyam Parashar</maintainer>
   <maintainer email="roxfoxpox@gmail.com">Ruffin White</maintainer>
 
   <license>BSD</license>
@@ -13,7 +13,7 @@
   <url type="repository">https://github.com/CognitiveRobotics/jarves</url>
   <url type="bugtracker">https://github.com/CognitiveRobotics/jarves/issues</url>
 
-  <author email="zephirefaith@zephirefaith.github">Priyam Parashar</author>
+  <author email="priyam8parashar@gmail.com">Priyam Parashar</author>
   <author email="roxfoxpox@gmail.com">Ruffin White</author>
 
   <!-- The *_depend tags are used to specify dependencies -->
@@ -31,6 +31,8 @@
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
   <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <run_depend>message_runtime</run_depend>
   <run_depend>roscpp</run_depend>
   <run_depend>rospy</run_depend>
   <run_depend>std_msgs</run_depend>
