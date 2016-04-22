@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package>
+    <name>uashh_smach</name>
+    <version>0.0.0</version>
+  <description >"uashh_smach"</description>
+  <author>Felix</author>
+  <license>BSD</license>
+  <maintainer email="priyam8parashar@gmail.com">Priyam Parashar</maintainer>
+  <url>http://ros.org/wiki/uashh_smach</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rospy</build_depend>
+  <build_depend>smach_ros</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>actionlib</build_depend>
+
+
+  <build_depend>std_msg</build_depend>
+  <build_depend>move_base_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  
+  <run_depend>rospy</run_depend>
+  <run_depend>smach_ros</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>actionlib</run_depend>
+
+
+  <run_depend>std_msg</run_depend>
+  <run_depend>move_base_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+
+
+
+
+</package>
