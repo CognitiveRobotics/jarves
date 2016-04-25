@@ -11,7 +11,7 @@
 
         var send_location = new ROSLIB.Service({
                 ros : _ROS,
-                name : '/office_destination',
+                name : '/destination_lookup',
                 serviceType : 'jarves/Destination'
                 });
 </script>
